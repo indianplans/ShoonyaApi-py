@@ -4,6 +4,8 @@ import logging
 import time
 import yaml
 import pandas as pd
+import pyotp
+
 
 #sample
 logging.basicConfig(level=logging.DEBUG)
@@ -50,14 +52,15 @@ def get_time(time_string):
 api = ShoonyaApiPy()
 
 #use following if yaml isnt used
-#user    = <uid>
-#pwd     = <password>
-#factor2 = <2nd factor>
-#vc      = <vendor code>
-#apikey  = <secret key>
-#imei    = <imei>
+user = 'FA338316'
+pwd = 'Zulekha88@89'
+factor2 = pyotp.TOTP('UHTJ3357D77ZQ447W45464VCD76JX757').now()
+vc = 'FA338316_U'
+apikey = 'fae6cadbd02755a67f7977eae25f4f20'
+imei = 'abc1234'
+print("Generated OTP:", factor2)
 
-#ret = api.login(userid = user, password = pwd, twoFA=factor2, vendor_code=vc, api_secret=apikey, imei=imei)
+ret = api.login(userid = user, password = pwd, twoFA=factor2, vendor_code=vc, api_secret=apikey, imei=imei)
 
 #yaml for parameters
 with open('cred.yml') as f:

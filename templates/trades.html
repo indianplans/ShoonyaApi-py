@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trades</title>
+    <link rel="stylesheet" href="/style/uikit.min.css">
+    <script src="/style/uikit.min.js" defer></script>
+    <script src="/style/uikit-icons.min.js" defer></script>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.8); /* Medium black background */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2rem;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.1); /* Light transparency */
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #00ffcc;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 255, 204, 0.2);
+        }
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        a {
+            color: #00ffcc;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trades</h1>
+        <table class="uk-table uk-table-hover uk-table-divider">
+            <thead>
+                <tr>
+                    <th>Trade ID</th>
+                    <th>Symbol</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trade in trades %}
+                <tr>
+                    <td>{{ trade['norentrdno'] }}</td>
+                    <td>{{ trade['tsym'] }}</td>
+                    <td>{{ trade['qty'] }}</td>
+                    <td>{{ trade['prc'] }}</td>
+                    <td>{{ trade['tdate'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/">Go Back to Home</a>
+    </div>
+</body>
+</html>

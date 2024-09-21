@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holdings</title>
+    <link rel="stylesheet" href="/style/uikit.min.css">
+    <script src="/style/uikit.min.js" defer></script>
+    <script src="/style/uikit-icons.min.js" defer></script>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.8); /* Medium black background */
+            font-family: Arial, sans-serif;
+            color: white; /* Ensure text color is readable on dark background */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly lighter black for the table background */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50; /* Green for header row */
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly lighter black for alternating rows */
+        }
+        h1 {
+            color: #fff; /* White text color for header */
+            text-align: center;
+            margin-top: 20px;
+        }
+        .uk-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Holdings</h1>
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>Exchange</th>
+                    <th>Trading Symbol</th>
+                    <th>Holding Quantity</th>
+                    <th>Collateral Quantity</th>
+                    <th>BTST Quantity</th>
+                    <th>Used Quantity</th>
+                    <th>Average Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for holding in holdings %}
+                {% for item in holding.exch_tsym %}
+                <tr>
+                    <td>{{ item.exch }}</td>
+                    <td>{{ item.tsym }}</td>
+                    <td>{{ holding.holdqty }}</td>
+                    <td>{{ holding.colqty }}</td>
+                    <td>{{ holding.btstqty }}</td>
+                    <td>{{ holding.usedqty }}</td>
+                    <td>{{ holding.upldprc }}</td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,22 +1,23 @@
 from api_helper import ShoonyaApiPy
 import logging
- 
-#enable dbug to see request and responses
+import pyotp
+
+# Enable debugging to see request and responses
 logging.basicConfig(level=logging.DEBUG)
 
-#start of our program
+# Start of the program
 api = ShoonyaApiPy()
 
-#credentials
-user    = <uid>
-pwd     = <password>
-factor2 = <2nd factor>
-vc      = <vendor code>
-app_key = <secret key>
-imei    = <imei>
+# Credentials
+user = 'FA338316'
+pwd = 'Zulekha88@89'
+factor2 = pyotp.TOTP('UHTJ3357D77ZQ447W45464VCD76JX757').now()
+vc = 'FA338316_U'
+apikey = 'fae6cadbd02755a67f7977eae25f4f20'
+imei = 'abc1234'
+print("Generated OTP:", factor2)
 
-#make the api call
-ret = api.login(userid=uid, password=pwd, twoFA=factor2, vendor_code=vc, api_secret=app_key, imei=imei)
+# Make the API call
+ret = api.login(userid=user, password=pwd, twoFA=factor2, vendor_code=vc, api_secret=apikey, imei=imei)
 
 print(ret)
-
